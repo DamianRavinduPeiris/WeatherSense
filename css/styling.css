@@ -1,0 +1,68 @@
+body {
+    background-image: url("https://wallpapercave.com/uwp/uwp3582856.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+.commonText {
+    font-weight: bold;
+    font-family: 'Tilt Warp', cursive;
+
+}
+
+
+.mainText {
+    margin-top: 50px;
+    color: white;
+    font-size: 100px;
+    text-align: center;
+    display: block;
+}
+#ws{
+    color: black;
+}
+
+.textFieldContainer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#textField {
+    margin-top: 10px;
+
+}
+#textFieldLabel{
+    font-weight: normal;
+}
+.weatherContainer{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+}
+.weatherCard{
+    margin-top: 100px;
+    width: 80vw;
+    height: 50vh;
+    background-color: white;
+
+}
+#cityName{
+    text-align: center;
+}
+body{
+    position: relative;
+}
+
+
+
+@media screen and (max-width: 1060px) {
+    .mainText{
+        font-size: 50px;
+    }
+
+}
