@@ -21,7 +21,8 @@ body {
     text-align: center;
     display: block;
 }
-#ws{
+
+#ws {
     color: black;
 }
 
@@ -35,38 +36,51 @@ body {
     margin-top: 10px;
 
 }
-#textFieldLabel{
+
+#textFieldLabel {
     font-weight: normal;
 }
-.weatherContainer{
+
+.weatherContainer {
     display: flex;
     align-content: center;
     justify-content: center;
 
 }
-.weatherCard{
+
+.weatherCard {
     margin-top: 100px;
     width: 80vw;
-    height: 50vh;
+    height: auto;
     background-color: white;
 
 }
-#cityName{
+
+#cityName {
     text-align: center;
 }
-body{
+
+body {
     position: relative;
 }
-#cityImage{
 
-
+.weatherText {
+    text-align: center;
 }
 
+.weatherIcon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 100px;
+
+}
 
 
 @media screen and (max-width: 1060px) {
 
-    .mainText{
+    .mainText {
         font-size: 40px;
     }
 
