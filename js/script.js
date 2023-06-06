@@ -30,11 +30,12 @@ function fetchCurrentData(p1, p2) {
             $("#cityName").append("<h1>" + json.location.name + ".</h1>")
             /*Adding 500px to the current scroll position.*/
             $(window).scrollTop($(window).scrollTop() + 500);
-            let image = fetch("https://api.unsplash.com/search/photos?client_id=lz0WtbT_YAZdZKUvfjBLkO9Fifnhw6y9S4kYJx7cj0A&query=losangeles&order_by=relavent&page=1")
+            let image = fetch("https://api.unsplash.com/search/photos?client_id=lz0WtbT_YAZdZKUvfjBLkO9Fifnhw6y9S4kYJx7cj0A&query=indias&order_by=relavent&page=9")
             image.then((response)=>{
                 myJson = response.json();
                 myJson.then((finalResult)=>{
-                    $("body").css("background-image","url("+finalResult.results[0].urls.full)+")";
+                    var randomIndex = Math.floor(Math.random() * finalResult.results.length); // Generate a random index within the range of the array
+                    $("body").css("background-image","url("+finalResult.results[randomIndex].urls.full)+")";
 
                 });
                 myJson.catch((error)=>{
