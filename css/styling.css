@@ -66,6 +66,7 @@ body {
 .weatherText {
     text-align: center;
     color: white;
+
 }
 
 .weatherIcon {
@@ -75,6 +76,11 @@ body {
     width: 100px;
     height: 100px;
 
+}
+.myClass{
+    background-color: black;
+    height: auto;
+    width: auto;
 }
 
 

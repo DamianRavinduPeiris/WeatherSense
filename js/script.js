@@ -79,6 +79,12 @@ function showWeatherData(json, initialLoad) {
     $(".weatherDetails").append("<img class='weatherIcon' src=" + json.current.condition.icon + " data-aos='zoom-in'><br><br>");
     $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>" + "Current Condition :   " + json.current.condition.text + "</h1><br><br>");
     $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>Humidity : " + json.current.humidity + "</h1><br><br>")
+    $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>Wind Speed : " + json.current.wind_kph + " km/h</h1><br><br>")
+    $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>Wind Direction : " + json.current.wind_dir + "</h1><br><br>")
+    $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>Feels Like : " + json.current.feelslike_c + "℃  |   " + json.current.feelslike_f + "℉</h1><br><br>")
+    $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>Last Updated : " + json.current.last_updated + "</h1><br><br>")
+    $(".weatherDetails").append("<h1 class='commonText weatherText myClass' data-aos='zoom-in' >"+"Made with 💖 by Damian."+"<br><br>"+"Copyright ©2023 Damian Peiris , All rights reserved."+"</h1><br><br>")
+
     /*Since unsplash.com does not have images of sri lankan cities individually ,I used any image of Sri Lanka. */
     if (initialLoad) {
         fetchCity(json.location.country);
