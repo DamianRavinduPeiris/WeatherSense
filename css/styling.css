@@ -52,7 +52,6 @@ body {
     margin-top: 100px;
     width: 80vw;
     height: auto;
-    background-color: white;
 
 }
 
@@ -66,6 +65,7 @@ body {
 
 .weatherText {
     text-align: center;
+    color: white;
 }
 
 .weatherIcon {

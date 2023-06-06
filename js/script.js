@@ -26,15 +26,7 @@ function fetchCurrentData(p1, p2) {
     res.then((res) => {
         var data = res.json();
         data.then((json) => {
-            $(".weatherContainer").css("display", "flex");
-            $("#cityName").append("<h1>" +"🗺️ Seems like you are in "+"<mark>"+json.location.name+"</mark>"+json.location.country+".</h1>")
-            $(".weatherDetails").append("<h1 class='commonText weatherText'>"+"Current Tempreature :   "+json.current.temp_c +"℃  |   "+  json.current.temp_f +"℉</h1><br><br>");
-            $(".weatherDetails").append("<img class='weatherIcon' src="+json.current.condition.icon+" ><br><br>");
-            $(".weatherDetails").append("<h1 class='commonText weatherText'>"+"Current Condition :   "+json.current.condition.text+"</h1><br><br>");
-            $(".weatherDetails").append("<h1 class='commonText weatherText'>Humidity : "+json.current.humidity+"</h1><br><br>")
-            fetchImage(json.location.country);
-            /*Adding 500px to the current scroll position.*/
-            $(window).scrollTop($(window).scrollTop() + 500);
+            showWeatherData(json, true);
 
 
         });
@@ -49,12 +41,56 @@ function fetchCurrentData(p1, p2) {
 }
 
 $("#textField").on("keydown", (event) => {
+
+
     if (event.key == "Enter") {
+        event.preventDefault();
+        fetchCityData();
+    }
+})
+
+async function fetchCityData() {
 
 
+    try {
+        let response = fetch("https://api.weatherapi.com/v1/current.json?key=930b591bc591480f9b583028231405&q=" + $("#tf").val());
+        let weatherData = await response;
+        let jsonData = weatherData.json();
+        let data = await jsonData;
+        $("#tf").val("");
+        $("#cityName").empty();
+        $(".weatherDetails").empty();
+        if (data) {
+            showWeatherData(data, false)
+        }
+
+
+    } catch (e) {
+        showAlert("Error", "Your city does not exist in this planet! 😂\n" + e, "error");
     }
 
-})
+
+}
+
+function showWeatherData(json, initialLoad) {
+    $(".weatherContainer").css("display", "flex");
+    $("#cityName").append("<h1>" + "🗺️ Seems like you are in " + "<mark>" + json.location.name + "</mark>" + json.location.country + ".</h1>")
+    $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>" + "Current Tempreature :   " + json.current.temp_c + "℃  |   " + json.current.temp_f + "℉</h1><br><br>");
+    $(".weatherDetails").append("<img class='weatherIcon' src=" + json.current.condition.icon + " data-aos='zoom-in'><br><br>");
+    $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>" + "Current Condition :   " + json.current.condition.text + "</h1><br><br>");
+    $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>Humidity : " + json.current.humidity + "</h1><br><br>")
+    /*Since unsplash.com does not have images of sri lankan cities individually ,I used any image of Sri Lanka. */
+    if (initialLoad) {
+        fetchCity(json.location.country);
+    } else {
+        fetchCity(json.location.name);
+    }
+
+    /*Adding 500px to the current scroll position.*/
+    $(window).scrollTop($(window).scrollTop() + 500);
+
+}
+
 
 function showAlert(title, msg, icon) {
     new swal({
@@ -67,24 +103,42 @@ function showAlert(title, msg, icon) {
 
 }
 
-function fetchImage(country){
-    let image = fetch("https://api.unsplash.com/search/photos?client_id=lz0WtbT_YAZdZKUvfjBLkO9Fifnhw6y9S4kYJx7cj0A&order_by=relavent&page=100&query="+country)
-    image.then((response)=>{
+function fetchImage(country) {
+    let image = fetch("https://api.unsplash.com/search/photos?client_id=lz0WtbT_YAZdZKUvfjBLkO9Fifnhw6y9S4kYJx7cj0A&order_by=relavent&page=100&query=" + country)
+    image.then((response) => {
         myJson = response.json();
-        myJson.then((finalResult)=>{
+        myJson.then((finalResult) => {
             var randomIndex = Math.floor(Math.random() * finalResult.results.length); // Generate a random index within the range of the array
-            $("body").css("background-image","url("+finalResult.results[randomIndex].urls.full)+")";
+            $("body").css("background-image", "url(" + finalResult.results[randomIndex].urls.full) + ")";
 
         });
-        myJson.catch((error)=>{
-            showAlert("Error","Something went wrong! "+error,"error");
+        myJson.catch((error) => {
+            showAlert("Error", "Something went wrong! " + error, "error");
 
         });
     })
-    image.catch((error)=>{
-        showAlert("Error","Something went wrong! "+error,"error");
+    image.catch((error) => {
+        showAlert("Error", "Something went wrong! " + error, "error");
 
     })
+
+}
+
+/*Same as above using async await.*/
+
+async function fetchCity(fetchThis) {
+    try {
+        let response = fetch("https://api.unsplash.com/search/photos?client_id=lz0WtbT_YAZdZKUvfjBLkO9Fifnhw6y9S4kYJx7cj0A&order_by=relavent&query=" + fetchThis);
+        let imageData = await response;
+        let jsonData = imageData.json();
+        let image = await jsonData;
+        /*By using a random number we can randomize the generating image.*/
+        var randomIndex = Math.floor(Math.random() * image.results.length);
+        $("body").css("background-image", "url(" + image.results[randomIndex].urls.full) + ")";// a random index within the range of the array
+    } catch (e) {
+        showAlert("Error", "Something went wrong while fetching the image! " + e, "error");
+    }
+
 
 }
 
