@@ -57,12 +57,17 @@ body {
 body{
     position: relative;
 }
+#cityImage{
+
+
+}
 
 
 
 @media screen and (max-width: 1060px) {
+
     .mainText{
-        font-size: 50px;
+        font-size: 40px;
     }
 
 }

@@ -1,7 +1,5 @@
 $(document).ready(() => {
     $(".weatherContainer").css("display", "none");
-
-
 });
 $("#mainLogo").on("click", () => {
     window.location.reload();
@@ -32,6 +30,24 @@ function fetchCurrentData(p1, p2) {
             $("#cityName").append("<h1>" + json.location.name + ".</h1>")
             /*Adding 500px to the current scroll position.*/
             $(window).scrollTop($(window).scrollTop() + 500);
+            let image = fetch("https://api.unsplash.com/search/photos?client_id=lz0WtbT_YAZdZKUvfjBLkO9Fifnhw6y9S4kYJx7cj0A&query=losangeles&order_by=relavent&page=1")
+            image.then((response)=>{
+                myJson = response.json();
+                myJson.then((finalResult)=>{
+                    $("body").css("background-image","url("+finalResult.results[0].urls.full)+")";
+
+                });
+                myJson.catch((error)=>{
+                    showAlert("Error","Something went wrong! "+error,"error");
+
+                });
+            })
+            image.catch((error)=>{
+                showAlert("Error","Something went wrong! "+error,"error");
+
+            })
+
+
 
 
         });
