@@ -1,5 +1,6 @@
 $(document).ready(() => {
     $(".weatherContainer").css("display", "none");
+    $(".myFooter").css("display", "none");
 });
 $("#mainLogo").on("click", () => {
     window.location.reload();
@@ -22,6 +23,7 @@ function successCallback(position) {
 }
 
 function fetchCurrentData(p1, p2) {
+    /*Sending the coordinates to the weather API , instead of the city name.*/
     var res = fetch("https://api.weatherapi.com/v1/current.json?key=930b591bc591480f9b583028231405&q=" + p1 + "," + p2)
     res.then((res) => {
         var data = res.json();
@@ -41,8 +43,6 @@ function fetchCurrentData(p1, p2) {
 }
 
 $("#textField").on("keydown", (event) => {
-
-
     if (event.key == "Enter") {
         event.preventDefault();
         fetchCityData();
@@ -74,7 +74,7 @@ async function fetchCityData() {
 
 function showWeatherData(json, initialLoad) {
     $(".weatherContainer").css("display", "flex");
-    $("#cityName").append("<h1>" + "🗺️ Seems like you are in " + "<mark>" + json.location.name + "</mark>" + json.location.country + ".</h1>")
+    $("#cityName").append("<h1>" + "CITY :  " + "<mark>" + json.location.name + "</mark>" + json.location.country + ".</h1>")
     $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>" + "Current Tempreature :   " + json.current.temp_c + "℃  |   " + json.current.temp_f + "℉</h1><br><br>");
     $(".weatherDetails").append("<img class='weatherIcon' src=" + json.current.condition.icon + " data-aos='zoom-in'><br><br>");
     $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>" + "Current Condition :   " + json.current.condition.text + "</h1><br><br>");
@@ -83,9 +83,11 @@ function showWeatherData(json, initialLoad) {
     $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>Wind Direction : " + json.current.wind_dir + "</h1><br><br>")
     $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>Feels Like : " + json.current.feelslike_c + "℃  |   " + json.current.feelslike_f + "℉</h1><br><br>")
     $(".weatherDetails").append("<h1 class='commonText weatherText' data-aos='zoom-in'>Last Updated : " + json.current.last_updated + "</h1><br><br>")
-    $(".weatherDetails").append("<h1 class='commonText weatherText myClass' data-aos='zoom-in' >"+"Made with 💖 by Damian."+"<br><br>"+"Copyright ©2023 Damian Peiris , All rights reserved."+"</h1><br><br>")
 
-    /*Since unsplash.com does not have images of sri lankan cities individually ,I used any image of Sri Lanka. */
+    $(".myFooter").css("display", "block");
+
+
+    /*Since unsplash.com does not have images of Sri Lankan cities individually ,I used any image of Sri Lanka. */
     if (initialLoad) {
         fetchCity(json.location.country);
     } else {
