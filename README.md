@@ -1,4 +1,4 @@
-# <u>☔ `WeatherSense.`<u>
+![image](https://github.com/DamianRavinduPeiris/WeatherSense/assets/115478137/4e30f163-53ea-409a-9f6f-6383da837486)# <u>☔ `WeatherSense.`<u>
 ## 💡 A simple weather app which shows the `real time` weather data.
   
   
@@ -10,9 +10,9 @@
   
   
   
-  
-  ![image](https://github.com/DamianRavinduPeiris/WeatherSense/assets/115478137/884f80bf-29d3-4470-ae46-e4d0f4281dda)
-  
+  ![image](https://github.com/DamianRavinduPeiris/WeatherSense/assets/115478137/41bd41fe-6bd5-4820-95db-bdf860e8e1d7)
+
+
   
   ### 🚀 Now live at here 👉 <a href="https://weathersense-by-damian.pages.dev/" target=_blank>`https://weathersense-by-damian.pages.dev/`</a>
 
