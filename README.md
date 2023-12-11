@@ -1,4 +1,4 @@
-# `☁️Weathersense`
+# `☁️WeatherSense`
 
 A simple weather app which shows the `real time` weather data.
   
